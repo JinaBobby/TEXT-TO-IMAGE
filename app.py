@@ -1,18 +1,14 @@
 import tkinter as tk
 import customtkinter as ctk 
-
 from PIL import ImageTk
 from authtoken import auth_token
-#from accelerate import Accelerator
-#accelerator = Accelerator()  
-#4device = accelerator.device{}
 import torch
 from diffusers import StableDiffusionPipeline 
 
 # Create the app
 app = tk.Tk()
-app.geometry("532x632")
-app.title("Stable Bud") 
+app.geometry("600x800")
+app.title("TEXT-TO-IMAGE") 
 ctk.set_appearance_mode("dark") 
 
 # Entry for the prompt
@@ -29,7 +25,7 @@ lmain.place(x=10, y=110)
 # Load the Stable Diffusion model on the CPU
 modelid = "CompVis/stable-diffusion-v1-4"
 pipe = StableDiffusionPipeline.from_pretrained(modelid, use_auth_token=auth_token)
-pipe.to("cpu")  # Explicitly set the device to CPU
+pipe.to("cpu")  
 
 # Generate function
 def generate(): 
