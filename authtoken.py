@@ -1,0 +1,1 @@
+auth_token = "YOUR HUGGING FACE TOKEN HERE"
