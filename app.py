@@ -1,7 +1,11 @@
 import tkinter as tk
 import customtkinter as ctk 
+
 from PIL import ImageTk
 from authtoken import auth_token
+#from accelerate import Accelerator
+#accelerator = Accelerator()  
+#4device = accelerator.device{}
 import torch
 from diffusers import StableDiffusionPipeline 
 
@@ -25,7 +29,7 @@ lmain.place(x=10, y=110)
 # Load the Stable Diffusion model on the CPU
 modelid = "CompVis/stable-diffusion-v1-4"
 pipe = StableDiffusionPipeline.from_pretrained(modelid, use_auth_token=auth_token)
-pipe.to("cpu")  
+pipe.to("cpu")  # Explicitly set the device to CPU
 
 # Generate function
 def generate(): 
@@ -38,9 +42,11 @@ def generate():
     lmain.configure(image=img) 
 
 # Button to trigger image generation
-trigger = ctk.CTkButton(master=app, height=40, width=120, text_font=("Arial", 20), text_color="white", fg_color="blue", command=generate)
-trigger.configure(text="Generate") 
-trigger.place(x=206, y=60) 
+trigger = ctk.CTkButton(master=app, height=40, width=120, text_color="white", fg_color="blue", command=generate)
+trigger.configure(text="Generate")
+trigger.place(x=206, y=60)
+
+
 
 # Run the app
 app.mainloop()
